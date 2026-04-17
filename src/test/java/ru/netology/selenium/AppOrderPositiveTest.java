@@ -41,17 +41,13 @@ public class AppOrderPositiveTest {
     @Test
     public void successfulForm() {
         WebElement form = driver.findElement(By.cssSelector("form"));
-
         form.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов-Петров Иван");
         form.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+78001111111");
         form.findElement(By.cssSelector("[data-test-id='agreement']")).click();
-        form.findElement(By.cssSelector("button")).click();
+        form.findElement(By.cssSelector(".button")).click();
 
-        WebElement actualElement = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
-
-        String actualText = actualElement.getText().trim();
-
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
-        assertTrue(actualElement.isDisplayed());
+        WebElement result = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", result.getText().trim());
+        assertTrue(result.isDisplayed());
     }
 }
